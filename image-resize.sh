@@ -4,5 +4,5 @@ filename=$1
 extension="${filename##*.}"
 filename="${filename%.*}"
 
-convert $1 -define jpeg:extent=220kb -resize 2048x1365\> $filename-256.$extension
+convert $1 -define jpeg:extent=300kb -resize 2048x1365\> $filename-301.$extension
 
