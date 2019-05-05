@@ -21,7 +21,7 @@ for i in $FILES; do
 done
 
 convert +append ${filelist[*]} ${OUTPUT%.*}-$$.${OUTPUT##*.}
-convert -define jpeg:extent=220kb -resize 2048x2048\> ${OUTPUT%.*}-$$.${OUTPUT##*.} $OUTPUT
+convert -define jpeg:extent=300kb -resize 2048x2048\> ${OUTPUT%.*}-$$.${OUTPUT##*.} $OUTPUT
 
 rm ${OUTPUT%.*}-$$.${OUTPUT##*.}
 
