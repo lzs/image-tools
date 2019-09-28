@@ -1,5 +1,6 @@
 #!/bin/bash
 
+maxsize=384
 PID=$$
 
 do_help() {
@@ -7,15 +8,20 @@ do_help() {
 	cat <<EOM
 Usage $basename [options] inputfiles... outputfile
 
+    -s <size>  Limit outut file to maximum isze of <size> kb (default 384)
+
 Adds a shadow to each inputfile, then appends them horizontally into the outputfile.
 EOM
 }
 
-while getopts "h?" opt; do
+while getopts "h?s" opt; do
 	case "$opts" in
 	h|\?)
 		do_help
 		exit 0
+		;;
+	s)
+		maxsize=$OPTARG
 		;;
 	esac
 done
@@ -42,7 +48,7 @@ for i in $FILES; do
 done
 
 convert +append ${filelist[*]} ${OUTPUT%.*}-$$.${OUTPUT##*.}
-convert -define jpeg:extent=384kb -resize 2048x2048\> ${OUTPUT%.*}-$$.${OUTPUT##*.} $OUTPUT
+convert -define jpeg:extent=${maxsize}kb -resize 2048x2048\> ${OUTPUT%.*}-$$.${OUTPUT##*.} $OUTPUT
 
 rm ${OUTPUT%.*}-$$.${OUTPUT##*.}
 
