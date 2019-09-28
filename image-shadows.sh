@@ -1,6 +1,27 @@
 #!/bin/bash
 
 PID=$$
+
+do_help() {
+	command=`basename $0`
+	cat <<EOM
+Usage $basename [options] inputfiles... outputfile
+
+Adds a shadow to each inputfile, then appends them horizontally into the outputfile.
+EOM
+}
+
+while getopts "h?" opt; do
+	case "$opts" in
+	h|\?)
+		do_help
+		exit 0
+		;;
+	esac
+done
+
+shift $((OPTIND-1))
+
 OUTPUT=${@:$#}
 FILES=${*%${!#}}
 
@@ -21,7 +42,7 @@ for i in $FILES; do
 done
 
 convert +append ${filelist[*]} ${OUTPUT%.*}-$$.${OUTPUT##*.}
-convert -define jpeg:extent=384-resize 2048x2048\> ${OUTPUT%.*}-$$.${OUTPUT##*.} $OUTPUT
+convert -define jpeg:extent=384kb -resize 2048x2048\> ${OUTPUT%.*}-$$.${OUTPUT##*.} $OUTPUT
 
 rm ${OUTPUT%.*}-$$.${OUTPUT##*.}
 
