@@ -28,6 +28,11 @@ done
 
 shift $((OPTIND-1))
 
+if [ "$#" -eq 0 ]; then
+	do_help
+	exit 0
+fi
+
 OUTPUT=${@:$#}
 FILES=${*%${!#}}
 
