@@ -14,8 +14,8 @@ Adds a shadow to each inputfile, then appends them horizontally into the outputf
 EOM
 }
 
-while getopts "h?s" opt; do
-	case "$opts" in
+while getopts "h?s:" opt; do
+	case "$opt" in
 	h|\?)
 		do_help
 		exit 0
