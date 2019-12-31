@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Copyright (C) 2015 - 2020 by Lai Zit Seng. All Rights Reserved.
+# Licensed under the terms of the MIT license.
+
 OPTIND=1
 maxsize=300
 no_clobber=0

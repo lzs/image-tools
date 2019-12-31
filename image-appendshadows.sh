@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Copyright (C) 2015 - 2020 by Lai Zit Seng. All Rights Reserved.                                   # Licensed under the terms of the MIT license.     
+
 maxsize=384
 PID=$$
 
